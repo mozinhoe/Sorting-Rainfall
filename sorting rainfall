@@ -1,0 +1,83 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+//Sum of all rain
+void totalRain (string month[], double array[] ){
+  int s = 12;
+  double total= 0;
+  
+  for (int i=0; i < s; i++){
+    total = total + array[i]; 
+  }
+  cout << endl << "The total rain fall this year is " << total << " inches"<< endl;
+}
+
+//finding highest rainfall
+void highestAmt( string month[], double array[]){
+  double highest = 0;
+  int s = 12;
+  
+  for (int i = 1; i < s; i++ ){
+    if (highest < array [i]){
+      highest = array [i];
+    }
+  }
+  
+  cout << endl << highest << " inches was the highest rainfall this year" << endl;
+  
+}
+
+//finding lowest
+void lowestAmt( string month[], double array[]){
+  double lowest = array [0];
+  int s = 12;
+
+  for (int i = 1; i < s; i++ ){
+    if (array [i] < lowest){
+      lowest = array [i];
+    }
+  }
+
+  cout << endl << lowest << " inches was the lowest rainfall this year" << endl;
+
+}
+
+// Average rainfall in the year
+void averageRain (string month[], double array[]){
+  int s = 12;
+  double total = 0;
+
+  for (int i = 0; i < s; i++){
+    total = total + array [i];
+  }
+
+  double average = total / s;
+
+  cout << endl << "The average rainfall for the year was " << average << " inches" << endl;
+}
+
+int main() {
+  const int s = 12;
+  string month[s] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+  double array[12];
+
+  //input of rainfall
+  cout << "Enter inches of rainfall for each month " << endl;
+  for  (int i = 0; i < s; i++){
+
+    cout << endl << month[i] << ": " ;
+    cin >> array[i];
+    
+    //making sure rainfall is not negative
+    while (array[i] < 0){
+      cout << "Enter positive integer. " << month[i] << ": ";
+      cin >> array[i];
+    }
+  }
+  
+  totalRain(month, array);
+  averageRain (month, array);
+  highestAmt (month, array);
+  lowestAmt (month, array);
+}
